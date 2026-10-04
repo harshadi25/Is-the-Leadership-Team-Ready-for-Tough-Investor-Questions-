@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Listed Company | Investor Readiness Engine</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark brand-mark-hidden"></div>
+      <div>
+        <div class="brand-title">Investor Relations</div>
+        <div class="brand-subtitle">Earnings call readiness</div>
+      </div>
+    </div>
+
+    <div class="data-pack">
+      <div class="data-pack-label">DISCLOSURE PACK</div>
+      <div class="data-pack-title">Load quarterly evidence</div>
+      <div class="data-pack-copy">Upload the Excel workbook containing results, segments, commitments, commentary and prior questions.</div>
+      <label class="upload-btn" for="excelFile">Upload Excel workbook</label>
+      <input id="excelFile" type="file" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"/>
+      <div class="upload-actions">
+        <button id="removeFile" class="remove-btn" type="button" disabled>Remove & upload new</button>
+      </div>
+      <div id="fileName" class="file-name">No workbook loaded</div>
+      <div id="dataStatus" class="data-status neutral">Waiting for data</div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-section">EXECUTIVE VIEW</div>
+      <button class="nav-btn active" data-page="problem">Executive Overview</button>
+
+      <div class="nav-section">DIAGNOSE</div>
+      <button class="nav-btn" data-page="performance">Financial Drivers</button>
+      <button class="nav-btn" data-page="segments">Segment Exposure</button>
+      <button class="nav-btn" data-page="commitments">Guidance & Credibility</button>
+
+      <div class="nav-section">REHEARSE</div>
+      <button class="nav-btn" data-page="pressure">Investor Pressure Test</button>
+      <button class="nav-btn" data-page="response">Management Response</button>
+
+      <div class="nav-section">DECIDE</div>
+      <button class="nav-btn" data-page="decision">Leadership Preparation</button>
+
+      <div class="nav-section">EXPLAIN</div>
+      <button class="nav-btn" data-page="methodology">Scoring & Methodology</button>
+    </nav>
+
+    
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">INVESTOR RELATIONS</div>
+        <h1>Investor Readiness Engine</h1>
+        <p id="pageSubtitle">A management cockpit connecting performance, investor exposure and call readiness.</p>
+      </div>
+      <div class="topbar-right">
+        <div class="quarter-pill" id="latestQuarter">No data</div>
+        <div class="readiness-mini"><span id="readinessDot"></span><span id="readinessText">Not assessed</span></div>
+      </div>
+    </header>
+
+    <section id="noDataState" class="empty-state">
+      <div class="empty-icon">↑</div>
+      <h2>Start with the disclosure pack</h2>
+      <p>Upload the Excel workbook. The prototype will turn the disclosures into an investor problem map, pressure test, response review and final leadership decision.</p>
+      <label class="primary-btn" for="excelFile">Upload Excel workbook</label>
+    </section>
+
+    <section id="appContent" class="hidden">
+      <div id="page-problem" class="page active"></div>
+      <div id="page-performance" class="page"></div>
+      <div id="page-segments" class="page"></div>
+      <div id="page-commitments" class="page"></div>
+      <div id="page-pressure" class="page"></div>
+      <div id="page-response" class="page"></div>
+      <div id="page-decision" class="page"></div>
+      <div id="page-methodology" class="page"></div>
+    </section>
+
+    <footer class="footer">
+      <span>Source: uploaded disclosure pack</span>
+      <span>Q2 FY25</span>
+    </footer>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
